@@ -1,0 +1,353 @@
+﻿@using TTNChieuT5.Models;
+
+@{
+    user nguoidung = new user();
+    if (Session["DangNhap"] != null)
+    {
+        nguoidung = (user)Session["DangNhap"];
+    }
+}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Goggles Ecommerce Category Bootstrap responsive Web Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Goggles a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="~/Assets/User/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="~/Assets/User/css/login_overlay.css" rel='stylesheet' type='text/css' />
+    <link href="~/Assets/User/css/style6.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Assets/User/css/shop.css" type="text/css" />
+    <link rel="stylesheet" href="~/Assets/User/css/owl.carousel.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/Assets/User/css/owl.theme.css" type="text/css" media="all">
+    <link href="~/Assets/User/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Assets/User/css/fontawesome-all.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+          rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <div class="banner-top container-fluid" id="home">
+        <!-- header -->
+        <header>
+            <div class="row">
+                <div class="col-md-3 top-info text-left mt-lg-4">
+                    <h6>Hỗ trợ</h6>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i> Gọi
+                        </li>
+                        <li class="number-phone mt-3">12345678099</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 logo-w3layouts text-center">
+                    <h1 class="logo-w3layouts">
+                        <a class="navbar-brand" href="@Url.Action("index", "Home")">
+                            Mật pet family
+                        </a>
+                    </h1>
+                </div>
+
+                <div class="col-md-3 top-info-cart text-right mt-lg-4" style="display:inline">
+                    <ul class="cart-inner-info">
+                        <li class="button-log" style="margin-bottom:15px;">
+                            @{
+                                if (Session["DangNhap"] != null)
+                                {
+                                    <a class="btn-open" href="@Url.Action("DangXuat", "DangNhap")">
+                                        Đăng Xuất <i class="fas fa-sign-out-alt"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn-open" href="@Url.Action("DangNhap", "DangNhap")">
+                                        Đăng Nhập <i class="fas fa-unlock"></i>
+                                    </a>
+                                }
+                            }
+                        </li>
+                        <li class="galssescart galssescart2 cart cart box_1">
+                            <a href="@Url.Action("ViewCart","Cart")" class="link_cart">
+                                Giỏ hàng
+                                <i class="fas fa-cart-arrow-down" style="margin-right:5px;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <label class="top-log mx-auto"></label>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light top-header mb-2">
+
+                <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-mega mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link ml-lg-0" href="@Url.Action("index", "Home")">
+                                Trang chủ
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("About", "Home")">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("SanPhamThucAn", "SanPham")">Thức ăn</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("SanPhamQuanAo", "SanPham")">Quần áo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("SanPhamPhuKien", "SanPham")">Phụ kiện</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Contact", "Home")">Liên hệ</a>
+                        </li>
+                        <li class="nav-item">
+                            @*@{   if (Session["DangNhap"] != null)
+                                    {
+
+                                           <p> Xin Chào @Model.HoTen </p>
+
+                                    }
+                                }*@
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+        <!-- //header -->
+        <!-- banner -->
+    </div>
+    @RenderBody()
+    <footer class="py-lg-5 py-3">
+        <div class="container-fluid px-lg-5 px-3">
+            <div class="row footer-top-w3layouts">
+                <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>Giới thiệu</h3>
+                    </div>
+                    <div class="footer-text">
+                        <p>Cùng với đội ngũ nhân viên mang đầy sức trẻ và nhiệt huyết, chúng tôi luôn mong muốn đem lại cho khách hàng của mình chất lượng dịch vụ tốt nhất, luôn lắng nghe và chăm sóc những nhu cầu dù là nhỏ nhất của Quý khách</p>
+                        <ul class="footer-social text-left mt-lg-4 mt-3">
+
+                            <li class="mx-2">
+                                <a href="#">
+                                    <span class="fab fa-facebook-f"></span>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <span class="fab fa-twitter"></span>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <span class="fab fa-google-plus-g"></span>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <span class="fab fa-linkedin-in"></span>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <span class="fas fa-rss"></span>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a href="#">
+                                    <span class="fab fa-vk"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>Kết nối</h3>
+                    </div> <div class="contact-info">
+                        <h4>Địa chỉ :</h4> <p>Số 236, Hoàng Quốc Việt, Cầu Giấy, Hà Nội</p> <div class="phone">
+                            <h4>Liên hệ :</h4> <p>
+                                Phone :
+                                +121 098 8907 9987
+                            </p> <p>
+                                Email : <a href="mailto:info@example.com">info@example.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>
+                            Đường
+                            dẫn
+                        </h3>
+                    </div> <ul class="links">
+                        <li>
+                            <a href="index.html">Trang chủ</a>
+                        </li>
+                        <li> <a href="about.html">Giới thiệu</a> </li>
+                        <li>
+                            <a href="shop.html">Đồ ăn</a>
+                        </li>
+                        <li> <a href="shop.html">Quần áo</a> </li>
+                        <li> <a href="shop.html">Phụ kiện</a> </li>
+                        <li>
+                            <a href="contact.html">
+                                Liên hệ
+                            </a>
+                        </li>
+                        <li> <a href="register.html">Đăng ký</a> </li>
+                    </ul>
+                </div> <div class="col-lg-3 footer-grid-w3ls">
+                    <div class="footer-title">
+                        <h3>
+                            Đăng kí để
+                            nhận ưu đãi
+                        </h3>
+                    </div> <div class="footer-text">
+                        <p>
+                            Bằng cách đăng ký vào
+                            danh sách gửi thư của chúng tôi, bạn sẽ luôn nhận được tin tức và cập nhật mới
+                            nhất từ chúng tôi.
+                        </p> <form action="#" method="post">
+                            <input class="form-control" type="email" name="Email" placeholder="Enter your
+email..." required=""> <button class="btn1">
+                                <i class="far fa-envelope"
+                                   aria-hidden="true"></i>
+                            </button> <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <div class="copyright-w3layouts mt-4">
+                <p class="copy-right
+text-center ">
+                    &copy; 2018 Goggles. All Rights Reserved | Design by <a href="http://w3layouts.com/">W3layouts</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--
+    //footer -->
+    <!--jQuery-->
+    <script src="~/Assets/User/js/jquery-2.2.3.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal();
+        });
+    </script>
+    <!-- // modal -->
+    <!--search jQuery-->
+    <script src="~/Assets/User/js/modernizr-2.6.2.min.js"></script>
+
+    <script src="~/Assets/User/js/minicart.js"></script>
+    <script>
+        googles.render();
+
+        googles.cart.on('googles_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) { }
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <!-- Count-down -->
+    <script src="~/Assets/User/js/simplyCountdown.js"></script>
+    <link href="~/Assets/User/css/simplyCountdown.css" rel='stylesheet' type='text/css' />
+    <script>
+        var d = new Date();
+        simplyCountdown('simply-countdown-custom', {
+            year: d.getFullYear(),
+            month: d.getMonth() + 2,
+            day: 25
+        });
+    </script>
+    <!--// Count-down -->
+
+
+    <script type="text/javascript">
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length };
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+
+    <!-- //end-smooth-scrolling -->
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!-- //dropdown nav -->
+    <script src="~/Assets/User/js/move-top.js"></script>
+    <script src="~/Assets/User/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+
+    <!--// end-smoth-scrolling -->
+
+    <script src="~/Assets/User/js/bootstrap.js"></script>
+    <!-- js file -->
+</body>
+
+</html>
+
