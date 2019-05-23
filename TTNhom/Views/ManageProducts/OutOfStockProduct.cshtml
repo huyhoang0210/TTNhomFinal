@@ -1,0 +1,58 @@
+﻿@using PagedList;
+@using PagedList.Mvc
+@model PagedList.PagedList<TTNChieuT5.Models.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int index = 1;
+}
+
+
+    <div class="table-agile-info">
+        <div class="panel panel-default">
+            <a href="/ManageProducts/Insert/" class="btn btn-primary">Thêm mới</a> <br /><br />
+            <div class="panel-heading">
+                Sản phẩm đang bán
+            </div>
+            <div>
+                <table class="table" ui-jq="footable" ui-options='{
+                    "paging": {
+                        "enabled": true
+                    },
+                    "filtering": {
+                        "enabled": true
+                    },
+                    "sorting": {
+                        "enabled": true
+                    }}'>
+                    <thead>
+                        <tr>
+                            <th data-breakpoints="xs">STT</th>
+                            <th data-breakpoints="xs">Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th data-breakpoints="xs">Đơn giá</th>
+                            <th data-breakpoints="xs sm md" data-title="HinhAnh">Hình ảnh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@index</td>
+                                <td>@item.TenSanPham</td>
+                                <td>@item.SoLuong</td>
+                                <td>@item.Gia</td>
+                                <td><img src="@Url.Content("/Images/"+item.HinhAnh)" alt="Alternate Text " style="  width:150px" /></td>
+                                <td><a href="/ManageProducts/Update/@item.IDSanPham" class="btn btn-primary">Cập nhật</a></td>
+                            </tr>
+                            index++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
+    </div>
+
+
+

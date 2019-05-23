@@ -1,0 +1,49 @@
+﻿@using PagedList;
+@using PagedList.Mvc
+@model PagedList.PagedList<TTNChieuT5.Models.HoaDon>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+        
+        <div class="panel-heading">
+            Bảng đơn hàng
+        </div>
+        <div>
+            <table class="table" ui-jq="footable">
+                <thead>
+                    <tr>
+                        <td>Mã hóa đơn</td>
+                        <td>Ngày tạo</td>
+                        <td>Tổng tiền</td>
+                        <td>Khách hàng</td>
+                        <td>#</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IDHoaDon</td>
+                            <td>@item.NgayTao</td>
+                            <td>@item.TongTien</td>
+                            <td>@item.user.HoTen</td>
+                            <td><a href="/ManageOrder/Detail/@item.IDHoaDon" class="btn btn-primary">Chi tiết</a></td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }))
+</div>
+
+
+

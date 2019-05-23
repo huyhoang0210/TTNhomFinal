@@ -1,0 +1,78 @@
+﻿
+
+
+@*@using PagedList;
+@using PagedList.Mvc;
+@using TTNChieuT5.Models;
+@model PagedList.PagedList<SanPham>*@
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .form-group{
+        width:90%;
+        margin-left:30px;
+    }   
+</style>
+<div class="container">
+    <div class="row">
+        <h2 class="Title">Thêm mới sản phẩm</h2>
+        <br />
+        <hr />
+        <br />
+        <br />
+
+        @using (Html.BeginForm("Insert", "ManageProducts", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-group">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label for="LoaiSanPham " class="control-label">Loai sản phẩm</label>
+                    <select data-val="true" data-val-number="Loại thú phải là 1 số" name="LoaiSanPham" class="form-control col-md-4">
+
+                        <option value="1">Đồ ăn cho chó</option>
+                        <option value="2">Đồ ăn cho mèo</option>
+                        <option value="3">Trang phục cho chó</option>
+                        <option value="4">Trang phục cho mèo</option>
+                        <option value="5">Phụ kiện cho chó</option>
+                        <option value="6">Phụ kiện cho mèo</option>
+
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <label for="TenSanPham" class="control-label">Tên sản phẩm</label>
+                    <input type="text" name="TenSanPham" value="" class=" form-control form-check-input" required />
+                </div>
+                <div class="form-group ">
+                    <label for="SoLuong" class="control-label col-md-2">Số lượng</label>
+                    <input type="number" name="SoLuong" value="1" min="0" class=" form-control form-check-input" required />
+                </div>
+                <div class="form-group ">
+                    <label for="Gia" class="control-label col-md-2">Giá bán</label>
+                    <input type="text" name="Gia" value="0" min="0" class=" form-control form-check-input" required />
+                </div>
+                <div class="form-group ">
+                    <label for="HinhAnh" class="control-label col-md-2">Hình ảnh</label>
+                    <input type="file" name="fileUpLoad" class=" form-control " />
+                </div>
+                <div class="form-group ">
+                    <label for="MoTa" class="control-label col-md-2">Mô tả</label>
+                    <textarea name="MoTa" cols="20" rows="10" class=" form-control form-check-input">
+
+                </textarea>
+                </div>
+
+                <input type="submit" name="" value="Thêm mới" class="btn btn-primary" />
+                <a href="/ManageProducts/Index/" class="btn btn-danger">Trờ về</a>
+            </div>
+            <p class="label-danger" style="height:40px; text-align:center; width:800px; margin-left:100px; color:#fff; padding-top:5px">@ViewBag.ThongBao</p>
+        }
+
+
+    </div>
+</div>
+
