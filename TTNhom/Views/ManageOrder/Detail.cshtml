@@ -1,0 +1,61 @@
+﻿@using TTNChieuT5.Models;
+@model HoaDon
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Thông tin đơn hàng @Model.user.HoTen </h2>
+<br />
+<br />
+    
+        @{IEnumerable<ChiTietHoaDon> CTDH = (IEnumerable<ChiTietHoaDon>)ViewBag.CTDH;}
+
+<div class="table-agile-info">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            Thông tin đơn hàng @Model.user.HoTen
+        </div>
+        <div>
+            <table class="table" ui-jq="footable">
+                
+                <tr>
+                    <td>Mã đơn hàng: <b style="color:red">@Model.IDHoaDon @Html.Hidden("IDHoaDon", Model.IDHoaDon)</b></td>
+                    <td>Tên khách hàng: <b style="color:red">@Model.user.HoTen</b></td>
+                    <td>Số điện thoại: <b style="color:red">@Model.user.SDT</b></td>
+                    <td>Ngày đặt: <b style="color:red">@Model.NgayTao</b></td>
+                </tr>
+                <tr>
+                    <td><b>Sản phẩm</b></td>
+                    <td><b>Hình ảnh</b></td>
+                    <td><b>Số lượng đặt</b></td>
+                    <td><b>Đơn giá</b></td>
+                </tr>
+            @foreach (var item in CTDH)
+            {
+                <tr>
+                    <td>@item.SanPham.TenSanPham</td>
+                    <td><img src="@Url.Content("/Images/" + @item.SanPham.HinhAnh)" alt="hình ảnh" width="150px" height="150px" /></td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.SanPham.Gia</td>
+                </tr>
+            }
+                <tr>
+                    <td style="text-align:right" colspan="4">Tổng số lượng: @Model.ChiTietHoaDons.Sum(n => n.SoLuong) sản phẩm</td>
+                </tr>
+                @{decimal? tongtien = Model.ChiTietHoaDons.Sum(n => n.SanPham.Gia * n.SoLuong); }
+                <tr>
+                    <td style="text-align:right" colspan="4">Tổng tiền: @tongtien.Value.ToString("#,##") vnd</td>
+                </tr>
+
+            </table>
+
+            <br /><br />
+            <button class="btn btn-primary" id="btnInDH">In đơn hàng</button>
+            <a href="/ManageOrder/Index/" class="btn btn-primary">trở về</a>
+        </div>
+        </div>
+    </div>
+
+
