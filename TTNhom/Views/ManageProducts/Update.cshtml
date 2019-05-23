@@ -1,0 +1,71 @@
+﻿@using TTNChieuT5.Models;
+@model SanPham
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .form-group {
+        width: 90%;
+        margin-left: 30px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <h2 class="Title">Cập nhật sản phẩm</h2>
+        <br />
+        <hr />
+        <br />
+        <br />
+
+        @using (Html.BeginForm("Update", "ManageProducts", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @ViewBag.ThongBao
+
+           
+        <div class="form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group ">
+                <label for="IDSanPham" class="control-label">Mã sản phẩm</label>
+                <input type="text" name="IDSanPham" value="@Model.IDSanPham" class=" form-control form-check-input" readonly />
+            </div>
+            <div class="form-group">
+                <label for="LoaiSanPham " class="control-label">Loai sản phẩm</label>
+                <select data-val="true" data-val-number="Loại thú phải là 1 số" name="LoaiSanPham" class="form-control col-md-4"  disabled>
+                    <option value="@Model.IDSanPham" >@Model.DanhMucSanPham.TenDanhMuc</option>
+                </select>
+            </div>
+            <div class="form-group ">
+                <label for="TenSanPham" class="control-label">Tên sản phẩm</label>
+                <input type="text" name="TenSanPham" value="@Model.TenSanPham" class=" form-control form-check-input" required />
+            </div>
+            <div class="form-group ">
+                <label for="SoLuong" class="control-label col-md-2">Số lượng</label>
+                <input type="number" name="SoLuong" value="@Model.SoLuong" min="0" class=" form-control form-check-input" required />
+            </div>
+            <div class="form-group ">
+                <label for="Gia" class="control-label col-md-2">Giá bán</label>
+                <input type="text" name="Gia" value="@Model.Gia" min="0" class=" form-control form-check-input" required />
+            </div>
+            <div class="form-group ">
+                <label for="HinhAnh" class="control-label col-md-2">Hình ảnh</label>
+                <input type="file" name="fileUpLoad" value="@Model.HinhAnh" class=" form-control " />
+            </div>
+            <div class="form-group ">
+                <label for="MoTa" class="control-label col-md-2">Mô tả</label>
+                <textarea name="MoTa" cols="20" rows="10" class=" form-control form-check-input">
+                        @Model.MoTa
+                    </textarea>
+            </div>
+
+            <input type="submit" name="" value="Cập nhật" class="btn btn-primary" />
+            <a href="/ManageProducts/Index/" class="btn btn-danger">Trờ về</a>
+        </div>
+        }
+
+
+    </div>
+</div>
+
